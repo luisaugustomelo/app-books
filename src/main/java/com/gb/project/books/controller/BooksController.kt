@@ -14,7 +14,7 @@ class BooksController {
     val counter = AtomicLong()
 	
     @GetMapping("/books")
-    fun addBook(@RequestParam(value = "title", defaultValue = "Book title exaple") name: String) =
+    fun addBook(@RequestParam(value = "title", defaultValue = "Book title example") name: String) =
             Book(counter.incrementAndGet(), name, "Book description example", "9781617293290", "BR")
 
 }
