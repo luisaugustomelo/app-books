@@ -14,17 +14,26 @@ import com.gb.project.books.model.Book
 @RestController
 class BooksController {
 
-    val counter = AtomicLong()
-	
-    @GetMapping("/book")
-    fun addBook(@RequestParam(value = "title", defaultValue = "Book title example") name: String) =
-            Book(counter.incrementAndGet(), name, "Book description example", "9781617293290", "BR")
-	
+	val counter = AtomicLong()
+
+	@GetMapping("/book")
+	fun addBook(@RequestParam(value = "title", defaultValue = "Book title example") name: String) {
+		Book(counter.incrementAndGet(), name, "Book description example", "9781617293290", "BR")
+	}
+
 	@GetMapping("/books")
-    fun getBooks(){
+	fun getBooks() {
 		val conn = Jsoup.connect("https://kotlinlang.org/docs/books.html").method(Method.GET)
-		val resp = conn.execute()
-		println(resp.body())
+		val res = conn.execute()
+		val doc = res.parse()
+		
+		println(doc.body())
+
+		val elements = doc.body().select("h2");
+
+		for (element in elements) {
+			println(element.ownText());
+		}
 	}
 
 }
