@@ -21,7 +21,7 @@ class BooksController {
             Book(counter.incrementAndGet(), name, "Book description example", "9781617293290", "BR")
 	
 	@GetMapping("/books")
-    fun getBook(){
+    fun getBooks(){
 		val conn = Jsoup.connect("https://kotlinlang.org/docs/books.html").method(Method.GET)
 		val resp = conn.execute()
 		println(resp.body())
