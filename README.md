@@ -14,6 +14,7 @@ Principais dependências:
 - Tomcat
 
 ## Estrutura do projeto
+...
 
 ## Licença
 
